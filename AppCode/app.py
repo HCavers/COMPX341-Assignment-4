@@ -39,7 +39,7 @@ def convert_to_num(value):
     line = re.sub("[^0-9]", "", value)
     return line
 
-@app.route('/hello')
+@app.route('/')
 def hello():
     count = get_hit_count()
     return 'Hello World! I have been seen {} times.\n'.format(count)

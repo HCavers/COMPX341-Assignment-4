@@ -30,6 +30,9 @@ def check_prime(num):
 
     return True
 
+def save_num(num):
+    cache.sadd('Primes', num)
+
 @app.route('/hello')
 def hello():
     count = get_hit_count()
@@ -38,6 +41,16 @@ def hello():
 @app.route('/isPrime/<number>')
 def isPrime(number):
     if check_prime(number):
+         save_num(number)
          return '{} is a prime.\n'.format(number)
     else:
          return '{} is not a prime.\n'.format(number)
+
+@app.route('/primeStored')
+def primesStored():
+    line = ''
+    primes = cache.smembers('Primes')
+    for value in primes:
+        line += str(value) + ' '
+    line += '\n'
+    return line

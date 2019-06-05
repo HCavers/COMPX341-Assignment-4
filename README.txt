@@ -6,3 +6,11 @@ Author: Hunter Cavers (1288108)
 	not be used as the port number for the app. I have instead used 58108
 	as the port that the app binds to.
 <note>
+
+/isPrime/<number>
+	returns '<number> is a prime.' if number is prime
+	returns '<number> is not a prime.' if number is not a prime
+
+/primeStored
+	returns list of all sotred numbers in string format with a space
+	character between values

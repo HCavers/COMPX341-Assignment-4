@@ -34,6 +34,11 @@ def check_prime(num):
 def save_num(num):
     cache.sadd('Primes', num)
 
+def is_numeric(value):
+    if value.isdigit():
+        return True
+    else:
+        return False
 
 def convert_to_num(value):
     line = re.sub("[^0-9]", "", value)
@@ -46,11 +51,14 @@ def hello():
 
 @app.route('/isPrime/<number>')
 def isPrime(number):
-    if check_prime(number):
-         save_num(number)
-         return '{} is a prime.\n'.format(number)
+    if is_numeric(number):
+        if check_prime(number):
+            save_num(number)
+            return '{} is a prime.\n'.format(number)
+        else:
+            return '{} is not a prime.\n'.format(number)
     else:
-         return '{} is not a prime.\n'.format(number)
+        return 'Error: {} is not a number.\n'.format(number)
 
 @app.route('/primeStored')
 def primesStored():

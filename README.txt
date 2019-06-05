@@ -10,6 +10,7 @@ Author: Hunter Cavers (1288108)
 /isPrime/<number>
 	returns '<number> is a prime.' if number is prime
 	returns '<number> is not a prime.' if number is not a prime
+	returns 'Error: <number> is not a number' if number contains non numeric characters
 
 /primeStored
 	returns list of all sotred numbers in string format with a space

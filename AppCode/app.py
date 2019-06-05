@@ -1,5 +1,6 @@
 import time
 import redis
+import re
 from flask import Flask
 from math import sqrt
 from itertools import count, islice
@@ -33,6 +34,11 @@ def check_prime(num):
 def save_num(num):
     cache.sadd('Primes', num)
 
+
+def convert_to_num(value):
+    line = re.sub("[^0-9]", "", value)
+    return line
+
 @app.route('/hello')
 def hello():
     count = get_hit_count()
@@ -49,8 +55,8 @@ def isPrime(number):
 @app.route('/primeStored')
 def primesStored():
     line = ''
-    primes = cache.smembers('Primes')
+    primes = cache.smembers('Primes') 
     for value in primes:
-        line += str(value) + ' '
+        line += convert_to_num(str(value)) + ' '
     line += '\n'
     return line

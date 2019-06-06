@@ -68,3 +68,10 @@ def primesStored():
         line += convert_to_num(str(value)) + ' '
     line += '\n'
     return line
+
+@app.route('/clearPrime')
+def clearPrime():
+    primes = cache.smembers('Primes')
+    for value in primes:
+        cache.srem('Primes', value)
+    return 'Set has been cleared.\n'.format()
